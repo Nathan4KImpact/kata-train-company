@@ -1,1 +1,1 @@
-# kata-train-company-
+# kata-train-company
