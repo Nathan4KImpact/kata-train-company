@@ -3,8 +3,9 @@ package ing.bnp.traincompany.entities;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class CustomerTripsPrice {
+public class CustomerTripsPrice implements Comparable<CustomerTripsPrice> {
     private Customer customer;
     protected List<Trip> trips = new ArrayList<>();
     private BigDecimal totalCostInCents;
@@ -34,4 +35,29 @@ public class CustomerTripsPrice {
         this.totalCostInCents = totalCostInCents;
     }
 
+    @Override
+    public int compareTo(CustomerTripsPrice o) {
+        return this.totalCostInCents.compareTo(o.getTotalCostInCents());
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerTripsPrice{" +
+                "customer=" + customer +
+                ", totalCostInCents=" + totalCostInCents +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerTripsPrice that = (CustomerTripsPrice) o;
+        return customer.equals(that.customer) && totalCostInCents.equals(that.totalCostInCents);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customer, totalCostInCents);
+    }
 }
