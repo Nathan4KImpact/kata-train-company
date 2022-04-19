@@ -2,14 +2,20 @@ package ing.bnp.traincompany.entities;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class CustomerTripsPrice implements Comparable<CustomerTripsPrice> {
     private Customer customer;
-    protected List<Trip> trips = new ArrayList<>();
+    protected List<Trip> trips;
     private BigDecimal totalCostInCents;
 
+    public CustomerTripsPrice() {
+        this.customer = new Customer();
+        trips =  new ArrayList<>();
+        totalCostInCents = BigDecimal.ZERO;
+    }
 
     public Customer getCustomer() {
         return customer;
@@ -43,8 +49,9 @@ public class CustomerTripsPrice implements Comparable<CustomerTripsPrice> {
     @Override
     public String toString() {
         return "CustomerTripsPrice{" +
-                "customer=" + customer +
-                ", totalCostInCents=" + totalCostInCents +
+                "customerId=" + customer.getCustomerId() + ", " +
+                "totalCostInCents=" + totalCostInCents + ", " +
+                "trips =" + trips.toString() +
                 '}';
     }
 
