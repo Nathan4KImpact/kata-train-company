@@ -2,12 +2,11 @@ package ing.bnp.traincompany.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DailyTaps {
-    LocalDate date;
-    List<Tap> taps;
+    private transient LocalDate  date;
+    private List<Tap> taps;
 
     public DailyTaps(){
         date = LocalDate.now();

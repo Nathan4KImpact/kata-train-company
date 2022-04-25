@@ -1,17 +1,16 @@
 package ing.bnp.traincompany.utils;
 
 import com.google.gson.Gson;
-import ing.bnp.traincompany.entities.CustomerTripsPrice;
-import ing.bnp.traincompany.entities.DailyTaps;
-import ing.bnp.traincompany.entities.Tap;
+import com.google.gson.GsonBuilder;
+import ing.bnp.traincompany.entities.AllTripsPrices;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.time.LocalDate;
 
 public class FileDataMgnmtHelper {
 
@@ -41,12 +40,24 @@ public class FileDataMgnmtHelper {
     }
 
 
-    public static boolean generateTripListToOutputFile(List<CustomerTripsPrice> customerList, String outputFile){
+    public static boolean generateTripListToOutputFile(AllTripsPrices allTripsPrices, String outputFile){
         if (outputFile == null) {
             System.out.println("You must specified output file path"); // to be tested
             return false;
         }
-        //...
+
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        String jsonString = gson.toJson(allTripsPrices);
+
+        try {
+            Path outputPath = Paths.get(outputFile);
+            Files.writeString (outputPath, jsonString, Charset.forName("UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
 
         return true;
     }

@@ -1,5 +1,6 @@
 package ing.bnp.traincompany.dao;
 
+import ing.bnp.traincompany.entities.AllTripsPrices;
 import ing.bnp.traincompany.entities.CustomerTripsPrice;
 import ing.bnp.traincompany.entities.DailyTaps;
 import ing.bnp.traincompany.entities.Tap;
@@ -28,6 +29,8 @@ public class TrainCompanyDao {
     }
 
     public void storeTripPricesPerCustomer(List<CustomerTripsPrice> tripsPricesPerCustomerList, String outputFile) {
-        FileDataMgnmtHelper.generateTripListToOutputFile(tripsPricesPerCustomerList, outputFile);
+        AllTripsPrices allTripsPrices = new AllTripsPrices();
+        allTripsPrices.addCustomerSummaries(tripsPricesPerCustomerList);
+        FileDataMgnmtHelper.generateTripListToOutputFile(allTripsPrices, outputFile);
     }
 }

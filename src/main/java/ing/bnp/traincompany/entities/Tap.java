@@ -5,7 +5,7 @@ import java.util.Date;
 public class Tap {
     private int unixTimestamp;
     private int customerId;
-    private Date tripDate;
+    private transient Date tripDate;
     private Character station;
 
     public int getUnixTimestamp() {

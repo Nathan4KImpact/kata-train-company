@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllTripsPrices {
-    List<CustomerTripsPrice> customerSummaries;
+    private List<CustomerTripsPrice> customerSummaries;
 
     public AllTripsPrices() {
         this.customerSummaries = new ArrayList<>();
     }
-
 
     public List<CustomerTripsPrice> getCustomerSummaries() {
         return customerSummaries;

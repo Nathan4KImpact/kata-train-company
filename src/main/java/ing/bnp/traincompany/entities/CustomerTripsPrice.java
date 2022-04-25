@@ -2,27 +2,21 @@ package ing.bnp.traincompany.entities;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class CustomerTripsPrice implements Comparable<CustomerTripsPrice> {
-    private Customer customer;
-    protected List<Trip> trips;
+    private int customerId;
     private BigDecimal totalCostInCents;
+    protected List<Trip> trips;
 
     public CustomerTripsPrice() {
-        this.customer = new Customer();
         trips =  new ArrayList<>();
         totalCostInCents = BigDecimal.ZERO;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
     public List<Trip> getTrips() {
@@ -49,8 +43,9 @@ public class CustomerTripsPrice implements Comparable<CustomerTripsPrice> {
     @Override
     public String toString() {
         return "CustomerTripsPrice{" +
-                "customerId=" + customer.getCustomerId() + ", " +
+                "customerId=" + customerId+ ", " +
                 "totalCostInCents=" + totalCostInCents + ", " +
+                //"trips =" + Arrays.toString(trips.toArray()) +
                 "trips =" + trips.toString() +
                 '}';
     }
@@ -60,11 +55,11 @@ public class CustomerTripsPrice implements Comparable<CustomerTripsPrice> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomerTripsPrice that = (CustomerTripsPrice) o;
-        return customer.equals(that.customer) && totalCostInCents.equals(that.totalCostInCents);
+        return customerId == that.customerId && totalCostInCents.equals(that.totalCostInCents);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customer, totalCostInCents);
+        return Objects.hash(customerId, totalCostInCents);
     }
 }

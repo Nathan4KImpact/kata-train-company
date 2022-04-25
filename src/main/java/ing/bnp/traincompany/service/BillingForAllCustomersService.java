@@ -19,6 +19,7 @@ public class BillingForAllCustomersService {
                     .map(tap -> {
                         customerTripPrice = new CustomerTripsPrice();
 
+                        //....
                         return customerTripPrice;
                     })
                     .collect(Collectors.toList());
